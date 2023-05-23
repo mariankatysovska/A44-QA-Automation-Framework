@@ -11,11 +11,10 @@ public class SongsTests extends BaseTest {
 
     @Test
     public void addSongToPlaylist() {
-        String text = "Dark Days";
-        String playlistName = generateRandomPlaylistName();
+        String text = "For the Poor";
+
         // login
-        openUrl();
-        login("demo@class.com", "te$t$tudent");
+
         // search for song
         WebElement searchInput = driver.findElement(By.cssSelector("[type='search']"));
         searchInput.click();
@@ -31,10 +30,7 @@ public class SongsTests extends BaseTest {
         WebElement addToBtn = driver.findElement(By.cssSelector("[data-test='add-to-btn']"));
         addToBtn.click();
         // create new playlist
-        WebElement newPlaylistNameInput = driver.findElement(By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']"));
-        newPlaylistNameInput.click();
-        newPlaylistNameInput.clear();
-        newPlaylistNameInput.sendKeys(playlistName);
+
         // click Enter
         new Actions(driver)
                 .keyDown(Keys.ENTER)

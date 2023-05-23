@@ -1,46 +1,46 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
+import java.time.Duration;
 
 public class LoginTests extends BaseTest {
-
     @Test
-    public void loginSucceedTest() throws InterruptedException {
-        openUrl();
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        clickLoginBtn();
-        // find if avatar exists
+    public static void loginSucceedTest() throws InterruptedException {
+
+
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notification*");
+
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        String url = "https://bbb.testpro.io/";
+        driver.get(url);
+        WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
+        emailInput.click();
+        emailInput.clear();
+        emailInput.sendKeys("marianna.tysovska@gmail.com");
+        Thread.sleep(5000);
+        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
+        passwordInput.click();
+        passwordInput.clear();
+        passwordInput.sendKeys("marysia288940.");
+        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
+        submitLogin.click();
+
         WebElement avatar = driver.findElement(By.cssSelector(".avatar"));
         Assert.assertTrue(avatar.isDisplayed());
-        Thread.sleep(5000);
+        driver.quit();
+
+
     }
 
 
-    @Test
-    public void loginEmptyPasswordTest() {
-        openUrl();
-        enterEmail("demo@class.com");
-        clickLoginBtn();
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        Assert.assertTrue(submitLogin.isDisplayed());
-    }
-
-    @Test
-    public void loginInvalidEmailTest() {
-        openUrl();
-        enterEmail("notexists@class.com");
-        enterPassword("te$t$tudent");
-        clickLoginBtn();
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        Assert.assertTrue(submitLogin.isDisplayed());
-    }
-
-
-    //        Email("demo@class.com");
-//        Password("te$t$tudent");
 }

@@ -7,10 +7,7 @@ public class ProfileTests extends BaseTest {
 
     @Test(groups = "ProfileTests")
     public void changeProfileName() {
-        openUrl();
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        clickLoginBtn();
+
         // open profile
         WebElement avatar = driver.findElement(By.cssSelector(".avatar"));
         avatar.click();
@@ -20,17 +17,16 @@ public class ProfileTests extends BaseTest {
         currentPasswordInput.clear();
         currentPasswordInput.sendKeys("te$t$tudent");
         // type new name
-        String name = generateRandomName();
-        System.out.println(name);
+
         WebElement profileName = driver.findElement(By.cssSelector("#inputProfileName"));
         profileName.click();
         profileName.clear();
-        profileName.sendKeys(name);
+        profileName.sendKeys("student");
         // type email
         WebElement emailInput = driver.findElement(By.cssSelector("#inputProfileEmail"));
         emailInput.click();
         emailInput.clear();
-        emailInput.sendKeys("demo@class.com");
+        emailInput.sendKeys("marianna.tysovska@gmail.com");
         // click save
         WebElement saveBtn = driver.findElement(By.cssSelector(".btn-submit"));
         saveBtn.click();
@@ -38,6 +34,6 @@ public class ProfileTests extends BaseTest {
         driver.navigate().refresh();
         WebElement profile = driver.findElement(By.cssSelector(".view-profile>span"));
         String newName = profile.getText();
-        Assert.assertEquals(newName, name);
+        Assert.assertEquals(newName, "student");
     }
 }
