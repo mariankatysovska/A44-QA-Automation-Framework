@@ -38,7 +38,9 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
 
         String url = "https://bbb.testpro.io/";
         openUrl(url);
