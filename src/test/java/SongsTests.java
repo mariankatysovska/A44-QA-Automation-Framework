@@ -35,9 +35,9 @@ public class SongsTests extends BaseTest {
         String playlistName = playlistPage.generateRandomPlaylistName();
         loginPage.login("demo@class.com", "te$t$tudent");
         songsPage.searchForSong(text);
-        clickViewAllBtn();
-        clickFirstSearchResultSong();
-        clickAddToPlaylistBtn();
+        basePage.clickViewAllBtn();
+        songsPage.clickFirstSearchResultSong();
+        songsPage.clickAddToPlaylistBtn();
         playlistPage.createNewPlaylistWhileAddingSong(playlistName);
         // assertions - success banner and song name in playlist
         Assert.assertTrue(basePage.isSuccessBannerDisplayed());

@@ -1,5 +1,6 @@
 package pages;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
+import java.util.Locale;
 
 public class BasePage {
 
@@ -41,5 +43,14 @@ public BasePage( WebDriver givenDriver ){
         driver.navigate().refresh();
     }
 
+    public String generateRandomName(){
+        Faker faker = new Faker(new Locale("en-US"));
+        String newName = faker.name().firstName();
+        return newName;
+    }
 
+    public void clickViewAllBtn() {
+        WebElement viewAllBtn = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn']"));
+        viewAllBtn.click();
+    }
 }

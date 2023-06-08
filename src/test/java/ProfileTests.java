@@ -1,17 +1,20 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.BasePage;
 import pages.LoginPage;
 
 public class ProfileTests extends BaseTest {
 
     @Test(groups = "ProfileTests")
     public void changeProfileName() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        BasePage basePage = new BasePage(getThreadLocal());
         loginPage.login("demo@class.com","te$t$tudent");
         // open profile
-        WebElement avatar = driver.findElement(By.cssSelector(".avatar"));
+        WebElement avatar = basePage.waitUntilClickable(By.cssSelector(".avatar"));
         avatar.click();
         // type password
         WebElement currentPasswordInput = driver.findElement(By.id("inputProfileCurrentPassword"));
@@ -19,7 +22,7 @@ public class ProfileTests extends BaseTest {
         currentPasswordInput.clear();
         currentPasswordInput.sendKeys("te$t$tudent");
         // type new name
-        String name = generateRandomName();
+        String name = basePage.generateRandomName();
         System.out.println(name);
         WebElement profileName = driver.findElement(By.cssSelector("#inputProfileName"));
         profileName.click();
@@ -38,5 +41,22 @@ public class ProfileTests extends BaseTest {
         WebElement profile = driver.findElement(By.cssSelector(".view-profile>span"));
         String newName = profile.getText();
         Assert.assertEquals(newName, name);
+    }
+
+    @Test
+    public void changeProfileBackground(){
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        BasePage basePage = new BasePage(getThreadLocal());
+        loginPage.login("demo@class.com","te$t$tudent");
+        // open profile
+
+        WebElement avatar = basePage.waitUntilClickable(By.cssSelector(".avatar"));
+        avatar.click();
+        WebElement oakTheme = driver.findElement(By.xpath("//div[@data-testid='theme-card-oak']"));
+        oakTheme.click();
+        WebElement oakPanel = driver.findElement(By.xpath("//div[@data-testid='theme-card-oak'][@class='theme selected']"));
+        Assert.assertTrue(oakPanel.isDisplayed());
+        WebElement background = driver.findElement(By.cssSelector("html[data-theme='oak']"));
+        Assert.assertTrue(background.isDisplayed());
     }
 }
