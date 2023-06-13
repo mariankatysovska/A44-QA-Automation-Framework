@@ -16,7 +16,7 @@ public class SongsTests extends BaseTest {
 
     @Test
     public void checkVisibilityTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.login("demo@class.com", "te$t$tudent");
         WebElement title = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("title")));
         String text = title.getText();
@@ -27,10 +27,10 @@ public class SongsTests extends BaseTest {
 
     @Test
     public void addSongToPlaylist() {
-        LoginPage loginPage = new LoginPage(driver);
-        PlaylistPage playlistPage = new PlaylistPage(driver);
-        SongsPage songsPage = new SongsPage(driver);
-        BasePage basePage = new BasePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        PlaylistPage playlistPage = new PlaylistPage(getThreadLocal());
+        SongsPage songsPage = new SongsPage(getThreadLocal());
+        BasePage basePage = new BasePage(getThreadLocal());
         String text = "Dark Days";
         String playlistName = playlistPage.generateRandomPlaylistName();
         loginPage.login("demo@class.com", "te$t$tudent");
@@ -46,8 +46,8 @@ public class SongsTests extends BaseTest {
 
     @Test
     public void playSong() {
-        LoginPage loginPage = new LoginPage(driver);
-        SongsPage songsPage = new SongsPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        SongsPage songsPage = new SongsPage(getThreadLocal());
         loginPage.login("demo@class.com", "te$t$tudent");
         songsPage.startPlaySong();
         Assert.assertTrue(songsPage.isPauseBtnDisplayed());
