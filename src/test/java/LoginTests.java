@@ -33,6 +33,7 @@ public class LoginTests extends BaseTest {
     }
 
 
+<<<<<<< Updated upstream
     @Test
     public void loginEmptyPasswordTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
@@ -55,3 +56,6 @@ public class LoginTests extends BaseTest {
     //        Email("demo@class.com");
 //        Password("te$t$tudent");
 }
+=======
+}
+>>>>>>> Stashed changes
