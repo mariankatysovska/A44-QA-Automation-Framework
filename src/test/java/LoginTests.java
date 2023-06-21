@@ -39,31 +39,4 @@ public class LoginTests  {
 
 
     }
-
-
-<<<<<<< Updated upstream
-    @Test
-    public void loginEmptyPasswordTest() {
-        LoginPage loginPage = new LoginPage(getThreadLocal());
-        loginPage.login("demo@class.com", "");
-        Assert.assertTrue(loginPage.isSubmitLoginBtnDisplayed());
-    }
-
-    @Test
-    public void loginInvalidEmailTest() {
-        LoginPage loginPage = new LoginPage(getThreadLocal());
-        loginPage
-                .enterEmail("notexists@class.com")
-                .enterPassword("te$t$tudent")
-                .clickLoginBtn();
-        Assert.assertTrue(loginPage.isSubmitLoginBtnDisplayed());
-    }
-
-
-
-    //        Email("demo@class.com");
-//        Password("te$t$tudent");
 }
-=======
-}
->>>>>>> Stashed changes
