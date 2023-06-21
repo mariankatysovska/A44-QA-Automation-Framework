@@ -1,9 +1,5 @@
 package pages;
 
-<<<<<<< Updated upstream
-import com.github.javafaker.Faker;
-=======
->>>>>>> Stashed changes
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
