@@ -16,10 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.time.Duration;
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 
 public class BaseTest {
     private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
@@ -29,13 +26,11 @@ public class BaseTest {
     public static WebDriver getThreadLocal() {
         return THREAD_LOCAL.get();
 
-
     }
 
     @BeforeSuite
     static void setupDriver() {
         WebDriverManager.chromedriver().setup();
-
 
     }
 
@@ -57,12 +52,6 @@ public class BaseTest {
         THREAD_LOCAL.remove();
     }
 
-
-    private WebDriver pickBrowser(String browser) throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        String gridURL = "http://192.168.0.159:4444";
-        switch (browser){
-
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         String gridURL = "http://192.168.200.3:5555";
@@ -82,56 +71,18 @@ public class BaseTest {
             case "grid-safari":
                 capabilities.setCapability("browserName", "safari");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
-                case "cloud":
-                return lambdaTest();
-                case "grid-edge":
+            case "grid-edge":
                 capabilities.setCapability("browserName", "edge");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
             case "grid-chrome":
                 capabilities.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
-                default:
+            default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--disable-notifications");
                 options.addArguments("--start-maximized");
-
-               // options.addArguments("--headless=new");
-                return driver = new ChromeDriver(options);
-        }
-    }
-
-
-    public WebDriver lambdaTest() throws MalformedURLException {
-        String username = "smisl.zhizni";
-        String authkey = "l4unZCXif463zVpLgdW8JI7C1KOX1lOa2ItC1iUllLYfiT6OMi";
-        String hub = "@hub.lambdatest.com/wd/hub";
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("platform", "Windows 10");
-        caps.setCapability("browserName", "Firefox");
-        caps.setCapability("version", "112.0");
-        caps.setCapability("resolution", "1024x768");
-        caps.setCapability("build", "TestNG With Java");
-        caps.setCapability("name", this.getClass().getName());
-        caps.setCapability("plugin", "git-testng");
-        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
-    }
-
-
-    @DataProvider(name="IncorrectLoginProviders")
-    public static Object[][] getDataFromDataProviders(){
-        return new Object[][]{
-                {"notExisting@email.com", "NotExistingPassword"},
-                {"demo@class.com", ""},
-                {"", ""},
-        };
-    }
-
-
-
-}
-
                 return driver = new ChromeDriver(options);
             case "cloud":
                 return lambdaTest();
@@ -159,10 +110,3 @@ public class BaseTest {
 
     }
 }
-
-
-
-
-
-
-
